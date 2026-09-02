@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Rosario - Doa Rosario Harian</title>
+  <meta name="description" content="Aplikasi Doa Rosario Katolik Harian yang elegan, interaktif, dengan panduan peristiwa dan butiran doa yang indah.">
+
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📿</text></svg>">
+</head>
+<body>
+
+  <!-- Splash Screen Overlay -->
+  <div id="splash-overlay" class="splash-overlay">
+    <div class="splash-content">
+      <div class="splash-cross-icon">
+        <i class="bi bi-cross"></i>
+      </div>
+      <h1 class="splash-title">Rosario</h1>
+      <p class="splash-tagline" data-i18n="tagline">Doa Rosario Harian</p>
+      <button id="btn-enter-app" class="btn-enter-app">
+        <i class="bi bi-arrow-right-circle me-1"></i> <span data-i18n="startPrayingBtn">Mulai Berdoa Rosario</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Responsive App Layout -->
+  <div class="app-layout">
+    
+    <!-- Desktop Left Sidebar (Sticky on Desktop >= 992px) -->
+    <aside class="app-sidebar d-none d-lg-flex" id="app-sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-brand">
+          <i class="bi bi-cross brand-cross"></i>
+          <span class="brand-name">Rosario</span>
+        </div>
+        <p class="sidebar-subtitle" data-i18n="tagline">Doa Rosario Harian</p>
+      </div>
+
+      <!-- Navigation Links on Left Sidebar -->
+      <nav class="sidebar-nav">
+        <button class="nav-tab-item active" data-screen="home" aria-label="Rosario">
+          <i class="bi bi-house"></i>
+          <span data-i18n="navRosary">Rosario</span>
+        </button>
+        <button class="nav-tab-item" data-screen="schedule" aria-label="Jadwal">
+          <i class="bi bi-calendar3"></i>
+          <span data-i18n="navSchedule">Jadwal</span>
+        </button>
+        <button class="nav-tab-item" data-screen="settings" aria-label="Pengaturan">
+          <i class="bi bi-gear"></i>
+          <span data-i18n="navSettings">Pengaturan</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Bottom Actions: Language & Theme -->
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-row">
+          <span class="sidebar-footer-label" data-i18n="languageLabel">Bahasa</span>
+          <div class="btn-group-toggle" role="group" aria-label="Language Selector">
+            <button class="btn-toggle-option lang-btn active" data-lang="id">ID</button>
+            <button class="btn-toggle-option lang-btn" data-lang="en">EN</button>
+          </div>
+        </div>
+
+        <div class="sidebar-footer-row">
+          <span class="sidebar-footer-label" data-i18n="themeLabel">Tema</span>
+          <button class="btn-utility theme-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <i class="bi bi-moon-stars"></i>
+            <span class="theme-label-text" data-i18n="themeLight">Terang</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main-wrapper">
+      
+      <!-- Mobile Sticky Top Header (< 992px) -->
+      <header class="mobile-top-bar d-lg-none">
+        <div class="brand-logo">
+          <i class="bi bi-cross brand-cross"></i>
+          <span class="brand-name">Rosario</span>
+        </div>
+        <div class="navbar-actions">
+          <!-- Language Switcher -->
+          <div class="btn-group-toggle" role="group" aria-label="Language Selector">
+            <button class="btn-toggle-option lang-btn active" data-lang="id">ID</button>
+            <button class="btn-toggle-option lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <!-- Theme Switcher -->
+          <button class="btn-utility theme-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="app-container" id="app-main-frame">
+        <div class="app-content">
+
+          <!-- ====================================================================
+               SCREEN 1: HOME (SELAMAT DATANG & 4 MISTERI)
+               ==================================================================== -->
+          <section id="screen-home" class="screen-view active">
+            <!-- Header Greeting -->
+            <div class="home-header">
+              <div class="greeting-lead" data-i18n="welcomeGreeting">Selamat Datang,</div>
+              <h1 class="greeting-title" data-i18n="welcomeSubtitle">Umat terkasih</h1>
+            </div>
+
+            <!-- Recommendation Card -->
+            <div class="card-recommendation" id="card-today-recom" role="button" tabindex="0">
+              <div class="recom-icon-badge">
+                <i class="bi bi-stars"></i>
+              </div>
+              <div class="recom-content">
+                <div class="recom-tag" data-i18n="recomTitle">REKOMENDASI HARI INI</div>
+                <h2 class="recom-title" id="recom-mystery-name">Peristiwa Gembira</h2>
+                <div class="recom-desc" id="recom-mystery-sub">Sangat cocok didoakan pada hari Senin</div>
+              </div>
+            </div>
+
+            <!-- Mysteries Section -->
+            <div class="section-title" data-i18n="mysteriesSectionTitle">MISTERI ROSARIO</div>
+            <div class="mysteries-list" id="mysteries-list-container">
+              <!-- 4 Cards rendered dynamically via app.js -->
+            </div>
+          </section>
+
+
+          <!-- ====================================================================
+               SCREEN 2: MYSTERY DETAIL (5 PERISTIWA)
+               ==================================================================== -->
+          <section id="screen-detail" class="screen-view">
+            <!-- Back Header -->
+            <div class="screen-header-nav">
+              <button class="btn-back-circle btn-back" aria-label="Kembali" title="Kembali">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="detail-header-info">
+                <h2 id="detail-mystery-title">Peristiwa Gembira</h2>
+                <p id="detail-mystery-days">Didaras tiap Senin &amp; Sabtu</p>
+              </div>
+            </div>
+
+            <!-- 5 Specific Events List -->
+            <div class="decades-list" id="decades-list-container">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Sticky Bottom CTA -->
+            <div class="bottom-cta-container">
+              <button class="btn-start-rosary" id="btn-start-mystery">
+                <i class="bi bi-play-fill"></i>
+                <span data-i18n="startPrayingBtn">Mulai Berdoa Rosario</span>
+              </button>
+            </div>
+          </section>
+
+
+          <!-- ====================================================================
+               SCREEN 3: ACTIVE PRAYER PROGRESS & BEAD ARC
+               ==================================================================== -->
+          <section id="screen-prayer" class="screen-view">
+            <div class="prayer-left-col">
+              <!-- Top Bar with Mystery Title & Bead Counter -->
+              <div class="prayer-top-bar">
+                <button class="btn-back-circle btn-back" aria-label="Kembali" title="Kembali">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <div class="prayer-meta-center">
+                  <div class="prayer-meta-decade-tag" id="prayer-decade-tag">PERISTIWA GEMBIRA KE-1</div>
+                  <h3 class="prayer-meta-title" id="prayer-decade-title">Kabar Sukacita</h3>
+                </div>
+                <div class="bead-counter-pill" id="prayer-bead-counter">3 / 10</div>
+              </div>
+
+              <!-- Prayer Card -->
+              <div class="prayer-card">
+                <div class="prayer-tag-label">
+                  <span id="prayer-tag-text">SALAM MARIA</span>
+                  <span class="prayer-step-indicator"><i class="bi bi-soundwave me-1"></i></span>
+                </div>
+                <blockquote class="prayer-text-body" id="prayer-body-text">
+                  "Salam Maria, penuh rahmat, Tuhan sertamu, terpujilah engkau di antara wanita dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah, doakanlah kami yang berdosa ini, sekarang dan waktu kami mati. Amin."
+                </blockquote>
+                <div id="prayer-scripture-insert"></div>
+              </div>
+            </div>
+
+            <div class="prayer-right-col">
+              <!-- Semicircular Rosary Bead Arc Visualizer -->
+              <div class="bead-arc-container">
+                <div class="beads-arc-track" id="beads-arc-track">
+                  <!-- 10 beads positioned along parabola dynamically -->
+                </div>
+              </div>
+
+              <!-- Bottom Player Navigation Controls -->
+              <div class="prayer-controls-row">
+                <button class="btn-ctrl-circle" id="btn-prayer-prev" aria-label="Sebelumnya" title="Sebelumnya">
+                  <i class="bi bi-arrow-left"></i>
+                </button>
+
+                <button class="btn-play-pause-main" id="btn-prayer-play-pause" aria-label="Putar / Jeda" title="Putar / Jeda">
+                  <i class="bi bi-play-fill" id="btn-play-pause-icon"></i>
+                </button>
+
+                <button class="btn-ctrl-circle" id="btn-prayer-next" aria-label="Berikutnya" title="Berikutnya">
+                  <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ====================================================================
+               SCREEN 4: WEEKLY SCHEDULE (JADWAL ROSARIO)
+               ==================================================================== -->
+          <section id="screen-schedule" class="screen-view">
+            <div class="schedule-header">
+              <h2 class="schedule-title" data-i18n="scheduleTitle">Jadwal Rosario</h2>
+              <p class="schedule-subtitle" data-i18n="scheduleSubtitle">Panduan mendaras misteri sepanjang pekan</p>
+            </div>
+
+            <div class="schedule-list" id="schedule-list-container">
+              <!-- 7 Days rendered dynamically (Sen, Sel, Rab, Kam, Jum, Sab, Min) -->
+            </div>
+          </section>
+
+
+          <!-- ====================================================================
+               SCREEN 5: SETTINGS & PREFERENCES
+               ==================================================================== -->
+          <section id="screen-settings" class="screen-view">
+            <div class="settings-header">
+              <h2 class="schedule-title" data-i18n="settingsTitle">Pengaturan</h2>
+              <p class="schedule-subtitle" data-i18n="settingsSubtitle">Sesuaikan pengalaman doa Anda</p>
+            </div>
+
+            <div class="settings-list">
+              <!-- Language Setting -->
+              <div class="settings-group">
+                <div class="settings-group-title" data-i18n="languageLabel">Bahasa</div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <h5>Pilihan Bahasa / Language</h5>
+                    <p>Bahasa Indonesia &bull; English</p>
+                  </div>
+                  <div class="btn-group-toggle">
+                    <button class="btn-toggle-option lang-btn" data-lang="id">Bahasa Indonesia</button>
+                    <button class="btn-toggle-option lang-btn" data-lang="en">English</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Theme Setting -->
+              <div class="settings-group">
+                <div class="settings-group-title" data-i18n="themeLabel">Tema Tampilan</div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <h5>Mode Visual</h5>
+                    <p>Terang (Parchment) &bull; Gelap (Sacred Dark)</p>
+                  </div>
+                  <div class="btn-group-toggle">
+                    <button class="btn-toggle-option theme-btn" data-theme-val="light" data-i18n="themeLight">Terang</button>
+                    <button class="btn-toggle-option theme-btn" data-theme-val="dark" data-i18n="themeDark">Gelap</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audio & Haptics Setting -->
+              <div class="settings-group">
+                <div class="settings-group-title">Suara &amp; Pembacaan Doa</div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <h5 data-i18n="audioChimeLabel">Dentang Lonceng</h5>
+                    <p data-i18n="audioChimeDesc">Dentang lembut saat berpindah butir doa</p>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="chk-audio-chime" checked>
+                  </div>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <h5 data-i18n="voiceReaderLabel">Pembaca Teks (TTS)</h5>
+                    <p data-i18n="voiceReaderDesc">Membaca teks doa dengan suara sistem</p>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="chk-voice-tts">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Font Size Setting -->
+              <div class="settings-group">
+                <div class="settings-group-title" data-i18n="fontSizeLabel">Ukuran Teks Doa</div>
+                <div class="setting-row">
+                  <div class="setting-info">
+                    <h5>Keterbacaan Teks</h5>
+                    <p>Sesuaikan kenyamanan membaca</p>
+                  </div>
+                  <div class="btn-group-toggle">
+                    <button class="btn-toggle-option font-size-btn active" data-size="normal" data-i18n="fontSizeNormal">Normal</button>
+                    <button class="btn-toggle-option font-size-btn" data-size="large" data-i18n="fontSizeLarge">Besar</button>
+                    <button class="btn-toggle-option font-size-btn" data-size="xlarge" data-i18n="fontSizeXLarge">Ekstra</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ====================================================================
+               SCREEN 6: PRAYER COMPLETED
+               ==================================================================== -->
+          <section id="screen-completed" class="screen-view">
+            <div class="completion-container">
+              <div class="completion-icon-wrapper">
+                <i class="bi bi-award"></i>
+              </div>
+              <h2 class="completion-title" data-i18n="completedTitle">Doa Rosario Selesai</h2>
+              <p class="completion-subtitle" data-i18n="completedSubtitle">
+                Semoga Bunda Maria senantiasa menyertai langkah hidup Anda dan mendoakan permohonan Anda kepada Tuhan Yesus Kristus.
+              </p>
+              <div class="d-flex flex-column gap-3 mt-4">
+                <button class="btn-start-rosary" id="btn-completed-again">
+                  <i class="bi bi-arrow-repeat"></i> <span data-i18n="prayAgain">Doa Lagi</span>
+                </button>
+                <button class="btn-utility justify-content-center py-3" id="btn-completed-home">
+                  <i class="bi bi-house me-1"></i> <span data-i18n="backToHome">Kembali ke Beranda</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Sticky Bottom Navigation Bar (Mobile / Tablet < 992px) -->
+        <nav class="bottom-nav d-lg-none">
+          <button class="nav-tab-item active" data-screen="home" aria-label="Rosario">
+            <i class="bi bi-house"></i>
+            <span data-i18n="navRosary">Rosario</span>
+          </button>
+          <button class="nav-tab-item" data-screen="schedule" aria-label="Jadwal">
+            <i class="bi bi-calendar3"></i>
+            <span data-i18n="navSchedule">Jadwal</span>
+          </button>
+          <button class="nav-tab-item" data-screen="settings" aria-label="Pengaturan">
+            <i class="bi bi-gear"></i>
+            <span data-i18n="navSettings">Pengaturan</span>
+          </button>
+        </nav>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/prayers-data.js"></script>
+  <script src="js/audio-helper.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

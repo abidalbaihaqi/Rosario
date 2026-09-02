@@ -1,0 +1,199 @@
+/* ==========================================================================
+   ROSARIO - Fully Responsive Stylesheet
+   Desktop Left Sticky Sidebar + Mobile Fixed Top & Bottom Navigation
+   Borderless, Clean, and Elegant
+   ========================================================================== */
+
+/* Mobile / Tablet (< 992px) */
+@media (max-width: 991.98px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  /* Fixed, non-scrollable top bar */
+  .mobile-top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+  }
+
+  .app-main-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .app-content {
+    padding-top: 60px; /* Non-scrollable top bar offset */
+    padding-bottom: 76px; /* Non-scrollable bottom bar offset */
+  }
+
+  /* Fixed, non-scrollable bottom bar */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+  }
+
+  /* Floating CTA above bottom nav on mystery detail */
+  .bottom-cta-container {
+    position: sticky;
+    bottom: 70px;
+    z-index: 900;
+  }
+}
+
+/* Small Mobile Devices (< 576px) */
+@media (max-width: 575.98px) {
+  .bead-arc-container {
+    height: 130px;
+    margin: 6px 0 16px;
+  }
+
+  .beads-arc-track {
+    max-width: 310px;
+    height: 125px;
+  }
+
+  .prayer-card {
+    padding: 20px 18px;
+    min-height: 170px;
+    border-radius: 20px;
+  }
+
+  .prayer-controls-row {
+    padding: 4px 20px 8px;
+  }
+
+  .btn-play-pause-main {
+    width: 54px;
+    height: 54px;
+    font-size: 1.3rem;
+  }
+
+  .btn-ctrl-circle {
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
+
+  .screen-view {
+    padding: 14px 16px;
+  }
+}
+
+/* Tablet Devices (576px - 991.98px) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .bead-arc-container {
+    height: 145px;
+  }
+
+  .beads-arc-track {
+    max-width: 340px;
+    height: 135px;
+  }
+}
+
+/* Desktop Screens (>= 992px) - Left Sticky Sidebar Layout */
+@media (min-width: 992px) {
+  .app-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .app-sidebar {
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    border-radius: 0 24px 24px 0;
+  }
+
+  .app-main-wrapper {
+    flex: 1;
+    padding: 24px 32px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 680px;
+    min-height: calc(100vh - 48px);
+    border-radius: 28px;
+    box-shadow: var(--shadow-sm);
+    background-color: var(--bg-app);
+  }
+
+  .app-content {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .card-mystery:hover,
+  .card-recommendation:hover,
+  .card-schedule-item:hover,
+  .card-decade-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .bead-arc-container {
+    height: 155px;
+    margin: 15px 0 25px;
+  }
+
+  .beads-arc-track {
+    max-width: 380px;
+    height: 145px;
+  }
+
+  .prayer-card {
+    padding: 28px 26px;
+    border-radius: 24px;
+  }
+
+  .prayer-controls-row {
+    padding: 10px 40px;
+  }
+}
+
+/* Micro-animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth Focus states for accessibility */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
